@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Enspire Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .contact-form-section {
+      background: var(--secondary-white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: var(--light-gray);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-yellow);
+    }
+
+    .info-card h4 {
+      color: var(--primary-navy);
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-card a {
+      color: var(--primary-navy);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .info-card a:hover {
+      color: var(--accent-yellow);
+    }
+
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .map-container {
+        height: 250px;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="navbar">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/images/Logo/logo_bimbel.jpg" alt="Enspire Learning Logo" class="navbar-logo-img">
+        <span>Enspire Learning</span>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="price.html">Price</a></li>
+        <li><a href="testimonial.html">Testimonial</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Contact Us</h1>
+      <p>Hubungi kami secara langsung jika ingin menanyakan program lebih detail</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="contact-grid">
+      <!-- Form Section -->
+      <div class="contact-form-section">
+        <h2 style="margin-bottom: 1.5rem; color: #1E3A8A;">Kirim Pesan Kepada Kami</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="nama">Nama Lengkap *</label>
+            <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Masukkan email Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label for="whatsapp">Nomor WhatsApp *</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Contoh: 6281234567890" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pesan">Pesan *</label>
+            <textarea id="pesan" name="pesan" placeholder="Tuliskan pertanyaan atau pesan Anda di sini..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan via WhatsApp</button>
+        </form>
+      </div>
+
+      <!-- Info Section -->
+      <div class="contact-info-section">
+        <h2 style="color: #1E3A8A;">Informasi Kontak</h2>
+
+        <!-- Email -->
+        <div class="info-card">
+          <h4>📧 Email</h4>
+          <p>
+            <a href="mailto:Bimbelenspire@gmail.com">Bimbelenspire@gmail.com</a>
+          </p>
+          <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">
+            Balas email dalam 24 jam
+          </p>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="info-card">
+          <h4>💬 WhatsApp</h4>
+          <p>
+            <a href="https://wa.me/6281296077097" target="_blank">+62 812 9607 7097</a> (WhatsApp 1)
+          </p>
+          <p>
+            <a href="https://wa.me/6281296077097" target="_blank">+62 812 9607 7097</a> (WhatsApp 2)
+          </p>
+          <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">
+            Chat dari pukul 15:00 - 21:00 (Senin-Jumat)
+          </p>
+        </div>
+
+        <!-- Jadwal Operasional -->
+        <div class="info-card">
+          <h4>🕐 Jam Operasional</h4>
+          <p><strong>Senin - Jumat:</strong> 15:00 - 21:00</p>
+          <p><strong>Sabtu:</strong> 09:00 - 17:00</p>
+          <p><strong>Minggu:</strong> Tutup</p>
+          <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">
+            Hubungi kami di luar jam operasional via email
+          </p>
+        </div>
+
+        <!-- Alamat -->
+        <div class="info-card">
+          <h4>📍 Alamat</h4>
+          <p>
+            Jl. Pendidikan No. 42<br>
+            Jakarta Selatan, 12345<br>
+            Indonesia
+          </p>
+          <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">
+            Kunjungi kantor kami untuk konsultasi langsung
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Maps -->
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.0588738451643!2d108.2287428775358!3d-7.347286135633784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f5753140eb0cb%3A0x28c6c469aafda1a3!2sBimbel%20Enspire%20Learning%20Tasikmalaya!5e0!3m2!1sid!2sid!4v1761883845876!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" style="background-color: #F9FAFB;">
+    <div class="section-title">
+      <h2>Pertanyaan yang Sering Diajakan</h2>
+      <p>Cari jawaban untuk pertanyaan umum tentang layanan kami</p>
+    </div>
+
+    <div style="max-width: 900px; margin: 2rem auto;">
+      <div class="accordion">
+        <!-- FAQ 1 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Bagaimana cara mendaftar menjadi siswa Enspire Learning?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Anda bisa menghubungi kami melalui WhatsApp, email, atau datang langsung ke kantor kami. 
+              Tim customer service kami akan membantu Anda memilih paket yang sesuai, menjawab pertanyaan, 
+              dan memandu proses pendaftaran. Anda juga bisa mencoba kelas gratis terlebih dahulu sebelum mendaftar.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Apakah ada kelas percobaan gratis?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Ya, kami menawarkan 1 sesi kelas percobaan gratis untuk calon siswa baru. 
+              Ini adalah kesempatan yang bagus untuk mengenal tutor kami dan merasakan metode pengajaran kami. 
+              Hubungi kami untuk mengatur jadwal kelas percobaan Anda.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Bagaimana jika saya tidak bisa datang ke kelas?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Kami mengerti bahwa kadang ada halangan. Jika Anda tidak bisa datang ke kelas, 
+              hubungi kami minimal 24 jam sebelumnya. Kami dapat mengganti jadwal Anda atau menyediakan video pembelajaran pengganti. 
+              Pengalaman pembelajaran Anda tetap terjaga dengan baik.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Apakah ada pembelajaran online?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Ya, kami menyediakan opsi pembelajaran baik offline maupun online melalui video call. 
+              Anda dapat memilih metode pembelajaran yang paling sesuai dengan kebutuhan Anda. 
+              Kualitas pembelajaran dijamin sama dengan pembelajaran tatap muka.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Berapa lama efek bimbingan terasa?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Setiap siswa berbeda, tapi umumnya siswa mulai merasakan peningkatan nilai dalam 2-3 bulan pertama. 
+              Hasil maksimal biasanya terlihat setelah 6 bulan dengan konsistensi belajar yang baik. 
+              Tim tutor kami akan membantu Anda mencapai target yang telah ditetapkan.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="accordion-item">
+          <div class="accordion-header">
+            <span>Apakah tutor bisa disesuaikan dengan preferensi saya?</span>
+            <span class="accordion-icon">▼</span>
+          </div>
+          <div class="accordion-content">
+            <p class="accordion-text">
+              Tentu saja! Kami memahami bahwa kompatibilitas dengan tutor sangat penting untuk proses pembelajaran yang efektif. 
+              Anda dapat memberikan preferensi tutor, dan kami akan mencocokkan Anda dengan tutor yang paling sesuai dengan gaya belajar Anda.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, #1E3A8A 0%, #2E5090 100%); color: white; text-align: center;">
+    <h2 style="color: white;">Siap Memulai?</h2>
+    <p style="color: #E0E7FF; margin-bottom: 2rem; font-size: 1.1rem;">
+      Hubungi kami sekarang dan dapatkan konsultasi gratis untuk memilih program yang tepat untuk Anda!
+    </p>
+    <a href="https://wa.me/6281296077097" target="_blank" class="btn btn-primary">Chat via WhatsApp</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Tentang Kami</h4>
+        <p>Enspire Learning adalah lembaga bimbingan belajar terpercaya yang telah membantu ribuan siswa meraih prestasi akademik terbaik.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank">f</a>
+          <a href="https://www.instagram.com" target="_blank">📷</a>
+          <a href="https://www.twitter.com" target="_blank">𝕏</a>
+          <a href="https://www.tiktok.com" target="_blank">♪</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Kontak</h4>
+        <p><strong>Email:</strong> Bimbelenspire@gmail.com</p>
+        <p><strong>WhatsApp 1:</strong> +62 812 9607 7097</p>
+        <p><strong>WhatsApp 2:</strong> +62 812 9607 7097</p>
+        <p style="margin-top: 1rem;"><a href="contact.html">Hubungi Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Layanan</h4>
+        <p><a href="about.html">Tentang Bimbel EL</a></p>
+        <p><a href="price.html">Paket Harga</a></p>
+        <p><a href="testimonial.html">Testimoni Siswa</a></p>
+        <p><a href="contact.html">Kontak Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Jam Operasional</h4>
+        <p><strong>Senin - Jumat:</strong> 15:00 - 21:00</p>
+        <p><strong>Sabtu:</strong> 09:00 - 17:00</p>
+        <p><strong>Minggu:</strong> Tutup</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Enspire Learning.com © 2025 | Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

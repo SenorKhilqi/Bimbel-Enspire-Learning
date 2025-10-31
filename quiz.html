@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz SNBT - Enspire Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .quiz-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .quiz-header h2 {
+      color: var(--primary-navy);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-header p {
+      color: var(--text-gray);
+      font-size: 1rem;
+    }
+
+    .quiz-category {
+      background: linear-gradient(135deg, #1E3A8A 0%, #2E5090 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 3rem 0 2rem 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .question-card {
+      background: #FFFFFF;
+      border: 2px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .question-card:hover {
+      border-color: var(--accent-yellow);
+      box-shadow: 0 5px 15px rgba(30, 58, 138, 0.1);
+    }
+
+    .question-number {
+      font-weight: 700;
+      color: var(--primary-navy);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-text {
+      color: var(--text-dark);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-title {
+      font-weight: 600;
+      color: var(--primary-navy);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: #F9FAFB;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .option-label:hover {
+      background: #F3F4F6;
+      border-color: var(--accent-yellow);
+    }
+
+    .option-label input[type="radio"] {
+      margin-right: 1rem;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+    }
+
+    .option-text {
+      flex: 1;
+      color: var(--text-dark);
+      font-size: 0.95rem;
+    }
+
+    .option-label input[type="radio"]:checked + .option-text {
+      font-weight: 600;
+      color: var(--primary-navy);
+    }
+
+    /* Hasil Jawaban */
+    .answer-result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .answer-correct {
+      background: #D1FAE5;
+      color: #065F46;
+      border-left: 4px solid #10B981;
+    }
+
+    .answer-wrong {
+      background: #FEE2E2;
+      color: #7F1D1D;
+      border-left: 4px solid #EF4444;
+    }
+
+    .correct-answer {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn-submit {
+      background: var(--primary-navy);
+      color: white;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: #1a2d7a;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
+    }
+
+    .btn-reset {
+      background: var(--accent-yellow);
+      color: var(--primary-navy);
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-reset:hover {
+      background: #F3D13F;
+      transform: translateY(-2px);
+    }
+
+    .result-summary {
+      background: linear-gradient(135deg, #1E3A8A 0%, #2E5090 100%);
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      margin: 3rem 0;
+      display: none;
+    }
+
+    .result-summary.show {
+      display: block;
+    }
+
+    .result-summary h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .result-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .result-item-value {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .result-item-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-container {
+        padding: 1rem;
+      }
+
+      .question-card {
+        padding: 1.5rem;
+      }
+
+      .quiz-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+      }
+
+      .btn-submit,
+      .btn-reset {
+        width: 100%;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="navbar">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/images/Logo/logo_bimbel.jpg" alt="Enspire Learning Logo" class="navbar-logo-img">
+        <span>Enspire Learning</span>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="price.html">Price</a></li>
+        <li><a href="testimonial.html">Testimonial</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Kuis SNBT</h1>
+      <p>Uji kemampuanmu dengan soal-soal SNBT yang real dan terstruktur</p>
+    </div>
+  </section>
+
+  <!-- Quiz Section -->
+  <section class="section">
+    <div class="quiz-container">
+      <div class="quiz-header">
+        <h2>Tes Seleksi Nasional Berbasis Tes (SNBT)</h2>
+        <p>Jawab semua pertanyaan dan klik "Kirim Jawaban" untuk melihat hasilmu</p>
+      </div>
+
+      <!-- Result Summary -->
+      <div class="result-summary" id="resultSummary">
+        <h3>Hasil Ujianmu</h3>
+        <div class="result-grid">
+          <div class="result-item">
+            <div class="result-item-value" id="correctCount">0</div>
+            <div class="result-item-label">Jawaban Benar</div>
+          </div>
+          <div class="result-item">
+            <div class="result-item-value" id="wrongCount">0</div>
+            <div class="result-item-label">Jawaban Salah</div>
+          </div>
+          <div class="result-item">
+            <div class="result-item-value" id="percentageScore">0%</div>
+            <div class="result-item-label">Persentase</div>
+          </div>
+        </div>
+      </div>
+
+      <form id="quizForm">
+        <!-- PENALARAN DEDUKTIF -->
+        <div class="quiz-category">Penalaran Deduktif</div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 1</div>
+          <div class="question-text">
+            Seorang salesman suatu perusahaan farmasi diminta mengunjungai lima apotik untuk memperkenalkan produk terbaru. Kelima apotek tersebut adalah J, K, L, M, dan N. Rencananya dia hanya akan mengunjungi masing-masing satu kali saja, satu apotek per hari dari Senin sampai Jumat dengan aturan sebagai berikut.<br><br>
+            i) Tidak boleh mengunjungi apotek L pada hari Senin<br>
+            ii) Harus mengunjungi apotek J sebelum mengunjungi apotek M<br>
+            iii) Harus mengunjungi apotek K sebelum mengunjungi apotek N<br><br>
+            <strong>Urutan kunjungan yang memenuhi syarat adalah...</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q1" value="A"> <span class="option-text">A. J, M, L, K, N</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="B"> <span class="option-text">B. K, M, J, N, L</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="C"> <span class="option-text">C. L, K, N, J, M</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="D"> <span class="option-text">D. L, M, J, K, N</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="E"> <span class="option-text">E. N, L, K, J, M</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result1"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 2</div>
+          <div class="question-text">
+            <strong>Kunjungan ke apotek mana yang tidak bisa dilakukan setelah mengunjungi apotek L?</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q2" value="A"> <span class="option-text">A. J dan K</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="B"> <span class="option-text">B. J dan N</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="C"> <span class="option-text">C. K dan M</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="D"> <span class="option-text">D. K dan N</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="E"> <span class="option-text">E. M dan N</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result2"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 3</div>
+          <div class="question-text">
+            <strong>Jika ia mengunjungi apotek L lebih dahulu daripada J, maka pernyataan yang pasti benar adalah...</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q3" value="A"> <span class="option-text">A. K dikunjungi pertama kali</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="B"> <span class="option-text">B. L dikunjungi pada Hari Selasa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="C"> <span class="option-text">C. J dikunjungi pada Hari Rabu</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="D"> <span class="option-text">D. N dikunjungi pada Hari Kamis</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="E"> <span class="option-text">E. M dikunjungi terakhir kali</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result3"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 4</div>
+          <div class="question-text">
+            <strong>Jika L, K, dan N dikunjungi berturut turut dalam tiga hari berurutan, maka M dapat dikunjungi pada hari...</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q4" value="A"> <span class="option-text">A. Senin atau Selasa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="B"> <span class="option-text">B. Senin atau Rabu</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="C"> <span class="option-text">C. Selasa atau Jumat</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="D"> <span class="option-text">D. Rabu atau Kamis</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="E"> <span class="option-text">E. Kamis atau Jumat</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result4"></div>
+        </div>
+
+        <!-- PENGETAHUAN KUANTITATIF -->
+        <div class="quiz-category">Pengetahuan Kuantitatif</div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 5</div>
+          <div class="question-text">
+            <strong>Berikut bilangan mana saja yang habis dibagi 7?</strong><br><br>
+            1) 1042<br>
+            2) 3637<br>
+            3) 6353<br>
+            4) 7098
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q5" value="A"> <span class="option-text">A. (1), (2) dan (3) SAJA yang benar</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="B"> <span class="option-text">B. (1) dan (3) SAJA yang benar</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="C"> <span class="option-text">C. (2) dan (4) SAJA yang benar</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="D"> <span class="option-text">D. HANYA (4) yang benar</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="E"> <span class="option-text">E. Tidak ada pilihan yang benar</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result5"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 6</div>
+          <div class="question-text">
+            <strong>Pak Bambang telah menjual barang dengan harga Rp 95.000,-, la memperoleh laba 25% dari harga beli. Berapakah harga beli sebenarnya?</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q6" value="A"> <span class="option-text">A. Rp 88.000</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="B"> <span class="option-text">B. Rp 80.000</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="C"> <span class="option-text">C. Rp 77.000</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="D"> <span class="option-text">D. Rp 76.000</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="E"> <span class="option-text">E. Rp 64.000</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result6"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 7</div>
+          <div class="question-text">
+            <strong>Apabila roda pertama berputar 9 kali maka roda kedua berputar 24 kali. Apabila roda yang pertama berputar 27 kali, berapa kali perputaran roda yang kedua?</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q7" value="A"> <span class="option-text">A. 92 kali</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="B"> <span class="option-text">B. 82 kali</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="C"> <span class="option-text">C. 74 kali</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="D"> <span class="option-text">D. 84 kali</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q7" value="E"> <span class="option-text">E. 72 kali</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result7"></div>
+        </div>
+
+        <!-- PENALARAN MATEMATIKA -->
+        <div class="quiz-category">Penalaran Matematika</div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 8</div>
+          <div class="question-text">
+            Melati berencana membeli suatu barang untuk hadiah Anggrek. Namun, ia bingung harus membeli di toko A atau toko B. Di kedua toko tersebut, harga barang yang akan dibeli Melati itu sama, namun setiap toko memberi diskon yang berbeda. Toko A memberikan diskon 10% untuk semua barang, dan untuk minimal pembelian Rp100.000 akan mendapat diskon lagi sebesar 30%. Toko B memberikan diskon 20% untuk semua barang, dan untuk minimal pembelian Rp100.000 akan mendapat diskon lagi sebesar 20%. Manakah hubungan P dan Q berikut yang sesuai dengan informasi di atas?<br><br>
+            P: total yang dibayarkan Haechan jika membeli barang seharga Rp150.000 di toko A<br>
+            Q: total yang dibayarkan Haechan jika membeli barang seharga Rp150.000 di toko B<br><br>
+            <strong>Pilihan yang sesuai adalah...</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q8" value="A"> <span class="option-text">A. P>Q</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="B"> <span class="option-text">B. Q>P</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="C"> <span class="option-text">C. P = Q</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q8" value="D"> <span class="option-text">D. Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari ketiga pilihan di atas</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result8"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 9</div>
+          <div class="question-text">
+            <strong>Ayah Vidy hendak bepergian ke Solo dengan menggunakan mobil, sedangkan Vidy akan menggunakan sepeda motor. Jarak rumah Amir dengan kota Solo sejauh 120 km. Ayah Vidy berencana berangkat jam 07.00 dengan kecepatan rata-rata 60 km/jam. Jika kecepatan Vidy rata-rata 90 km/jam. Maksimal jam berapakah Vidy harus berangkat agar bersamaan dengan Ayahnya tiba di Solo?</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q9" value="A"> <span class="option-text">A. 07.30</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q9" value="B"> <span class="option-text">B. 07.35</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q9" value="C"> <span class="option-text">C. 07.40</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q9" value="D"> <span class="option-text">D. 07.45</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q9" value="E"> <span class="option-text">E. 07.50</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result9"></div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-number">Soal 10</div>
+          <div class="question-text">
+            <strong>Nilai ujian enam orang siswa memiliki median dan modus 85, jangkauan antarkuartil 5, jangkauan data 20, dan rata-rata 82,5. Diketahui terdapat 3 siswa yang memiliki nilai sama. Jika nilai ketuntasan minimal untuk ujian tersebut adalah 82, banyak siswa yang harus mengikuti ujian ulang adalah....</strong>
+          </div>
+          <div class="options">
+            <label class="option-label">
+              <input type="radio" name="q10" value="A"> <span class="option-text">A. 1 siswa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q10" value="B"> <span class="option-text">B. 2 siswa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q10" value="C"> <span class="option-text">C. 3 siswa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q10" value="D"> <span class="option-text">D. 4 siswa</span>
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q10" value="E"> <span class="option-text">E. 5 siswa</span>
+            </label>
+          </div>
+          <div class="answer-result" id="result10"></div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button type="button" class="btn-submit" id="submitBtn">Kirim Jawaban</button>
+          <button type="button" class="btn-reset" id="resetBtn">Coba Lagi</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, #1E3A8A 0%, #2E5090 100%); color: white; text-align: center;">
+    <h2 style="color: white;">Tingkatkan Prestasimu Bersama Enspire Learning!</h2>
+    <p style="color: #E0E7FF; margin-bottom: 2rem; font-size: 1.1rem;">
+      Dapatkan bimbingan intensif dan persiapan SNBT terbaik dari para ahli kami
+    </p>
+    <a href="contact.html" class="btn btn-primary">Hubungi Kami Sekarang</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Tentang Kami</h4>
+        <p>Enspire Learning adalah lembaga bimbingan belajar terpercaya yang telah membantu ribuan siswa meraih prestasi akademik terbaik.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank">f</a>
+          <a href="https://www.instagram.com" target="_blank">📷</a>
+          <a href="https://www.twitter.com" target="_blank">𝕏</a>
+          <a href="https://www.tiktok.com" target="_blank">♪</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Kontak</h4>
+        <p><strong>Email:</strong> Bimbelenspire@gmail.com</p>
+        <p><strong>WhatsApp 1:</strong> +62 812 9607 7097</p>
+        <p><strong>WhatsApp 2:</strong> +62 812 9607 7097</p>
+        <p style="margin-top: 1rem;"><a href="contact.html">Hubungi Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Layanan</h4>
+        <p><a href="about.html">Tentang Bimbel EL</a></p>
+        <p><a href="price.html">Paket Harga</a></p>
+        <p><a href="testimonial.html">Testimoni Siswa</a></p>
+        <p><a href="contact.html">Kontak Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Jam Operasional</h4>
+        <p><strong>Senin - Jumat:</strong> 15:00 - 21:00</p>
+        <p><strong>Sabtu:</strong> 09:00 - 17:00</p>
+        <p><strong>Minggu:</strong> Tutup</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Enspire Learning.com © 2025 | Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <script src="assets/js/script.js"></script>
+  <script src="assets/js/quiz.js"></script>
+</body>
+</html>

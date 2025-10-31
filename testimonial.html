@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonial - Enspire Learning</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .testimonial-card-grid {
+      background: var(--light-gray);
+      padding: 2rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-yellow);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card-grid:hover {
+      box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .stars {
+      color: var(--accent-yellow);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-content {
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-quote {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary-navy);
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-campus {
+      font-size: 0.85rem;
+      color: var(--accent-yellow);
+      font-weight: 600;
+    }
+
+    .testimonial-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1rem;
+      border: 3px solid var(--accent-yellow);
+    }
+
+    .slider-container {
+      position: relative;
+      margin: 2rem auto;
+      max-width: 800px;
+    }
+
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      scroll-snap-type: x mandatory;
+    }
+
+    .slider::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .slider::-webkit-scrollbar-track {
+      background: var(--border-gray);
+      border-radius: 10px;
+    }
+
+    .slider::-webkit-scrollbar-thumb {
+      background: var(--accent-yellow);
+      border-radius: 10px;
+    }
+
+    .slider-item {
+      min-width: 100%;
+      scroll-snap-align: start;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="navbar">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/images/Logo/logo_bimbel.jpg" alt="Enspire Learning Logo" class="navbar-logo-img">
+        <span>Enspire Learning</span>
+      </a>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="price.html">Price</a></li>
+        <li><a href="testimonial.html" class="active">Testimonial</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Testimoni Pelajar</h1>
+      <p>Bukti nyata dari kesuksesan siswa Enspire Learning</p>
+    </div>
+  </section>
+
+  <!-- Intro Section -->
+  <section class="section">
+    <div class="section-title">
+      <h2>Kisah Sukses Alumni Kami</h2>
+      <p>Ratusan siswa telah berhasil meraih prestasi akademik impian mereka melalui bimbingan Enspire Learning</p>
+    </div>
+  </section>
+
+  <!-- Testimonials Grid Section -->
+  <section class="section" style="background-color: #F9FAFB;">
+    <div class="testimonial-grid">
+      <!-- Testimoni 1 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/RUMAISA HILWA-ITB.png" alt="RUMAISA HILWA" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Enspire Learning benar-benar membantu saya memahami konsep-konsep sulit dalam matematika dan fisika. 
+            Tutor-tutornya sangat sabar dan penjelasannya mudah dipahami. Terima kasih telah membantu saya masuk ITB!"
+          </p>
+        </div>
+        <div class="testimonial-author">RUMAISA HILWA</div>
+        <div class="testimonial-campus">🎓 Institut Teknologi Bandung (ITB)</div>
+      </div>
+
+      <!-- Testimoni 2 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/JULIO ALFIANSYAH-UGM.png" alt="JULIO ALIFIANSYAH" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Program bimbingan Enspire Learning tidak hanya fokus pada akademik, tapi juga mengembangkan kemampuan berpikir kritis. 
+            Saya sangat terbantu dalam menghadapi UTBK dan akhirnya lolos ke UGM jurusan favoritku."
+          </p>
+        </div>
+        <div class="testimonial-author">JULIO ALIFIANSYAH</div>
+        <div class="testimonial-campus">🎓 Universitas Gadjah Mada (UGM)</div>
+      </div>
+
+      <!-- Testimoni 3 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/VIONA-STAN.png" alt="VIONA" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Persiapan SPMB STAN saya dibimbing dengan sangat detail di Enspire Learning. Metode pembelajaran yang interaktif 
+            membuat saya lebih percaya diri. Alhamdulillah saya lolos di tes akademik STAN!"
+          </p>
+        </div>
+        <div class="testimonial-author">VIONA</div>
+        <div class="testimonial-campus">🎓 Sekolah Tinggi Akuntansi Negara (STAN)</div>
+      </div>
+
+      <!-- Testimoni 4 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/ROFIQ ARIFIN-IPB.png" alt="ROFIQ ARIPIN" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Tutor-tutor Enspire Learning tidak hanya mengajar, tapi juga memberikan motivasi yang luar biasa. 
+            Mereka memahami kesulitan setiap siswa dan memberikan solusi yang tepat. Terima kasih telah membantu saya masuk IPB!"
+          </p>
+        </div>
+        <div class="testimonial-author">ROFIQ ARIPIN</div>
+        <div class="testimonial-campus">🎓 Institut Pertanian Bogor (IPB)</div>
+      </div>
+
+      <!-- Testimoni 5 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/MARSHANDA SYAHRANI P-UNPAD.png" alt="MARSHANDA SYAHRANI P" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Saya awalnya merasa tertinggal di sekolah, tapi Enspire Learning membuat saya catch up dengan mudah. 
+            Guru-gurunya sangat profesional dan fasilitas belajarnya lengkap. Sekarang saya lulus ke UNPAD dengan nilai yang memuaskan!"
+          </p>
+        </div>
+        <div class="testimonial-author">MARSHANDA SYAHRANI P</div>
+        <div class="testimonial-campus">🎓 Universitas Padjadjaran (UNPAD)</div>
+      </div>
+
+      <!-- Testimoni 6 -->
+      <div class="testimonial-card-grid">
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+        <img src="assets/images/Testimonial/TIARA NUR AZIZAH-UI.png" alt="TIARA NUR AZIZAH" class="testimonial-photo">
+        <div class="testimonial-content">
+          <p class="testimonial-quote">
+            "Enspire Learning memberikan bimbingan yang sangat terstruktur dan sistematis. Metode belajarnya disesuaikan dengan gaya belajar saya. 
+            Hasilnya, saya berhasil masuk UI dengan ranking yang sangat bagus!"
+          </p>
+        </div>
+        <div class="testimonial-author">TIARA NUR AZIZAH</div>
+        <div class="testimonial-campus">🎓 Universitas Indonesia (UI)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistik Section -->
+  <section class="section">
+    <div class="section-title">
+      <h2>Prestasi Siswa Kami</h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icon">🎓</div>
+        <h3><span class="counter" data-target="750">0</span></h3>
+        <p>Siswa Berhasil</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3><span class="counter" data-target="95">0</span>%</h3>
+        <p>Masuk Universitas Impian</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <h3>4.9/5</h3>
+        <p>Rating Kepuasan</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section" style="background: linear-gradient(135deg, #1E3A8A 0%, #2E5090 100%); color: white; text-align: center;">
+    <h2 style="color: white;">Jadilah Bagian Dari Kisah Sukses Kami!</h2>
+    <p style="color: #E0E7FF; margin-bottom: 2rem; font-size: 1.1rem;">
+      Raih impianmu dan masuk ke universitas pilihan dengan bantuan Enspire Learning
+    </p>
+    <a href="contact.html" class="btn btn-primary">Mulai Belajar Sekarang</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Tentang Kami</h4>
+        <p>Enspire Learning adalah lembaga bimbingan belajar terpercaya yang telah membantu ribuan siswa meraih prestasi akademik terbaik.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com" target="_blank">f</a>
+          <a href="https://www.instagram.com" target="_blank">📷</a>
+          <a href="https://www.twitter.com" target="_blank">𝕏</a>
+          <a href="https://www.tiktok.com" target="_blank">♪</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Kontak</h4>
+        <p><strong>Email:</strong> Bimbelenspire@gmail.com</p>
+        <p><strong>WhatsApp 1:</strong> +62 812 9607 7097</p>
+        <p><strong>WhatsApp 2:</strong> +62 812 9607 7097</p>
+        <p style="margin-top: 1rem;"><a href="contact.html">Hubungi Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Layanan</h4>
+        <p><a href="about.html">Tentang Bimbel EL</a></p>
+        <p><a href="price.html">Paket Harga</a></p>
+        <p><a href="testimonial.html">Testimoni Siswa</a></p>
+        <p><a href="contact.html">Kontak Kami</a></p>
+      </div>
+      <div class="footer-section">
+        <h4>Jam Operasional</h4>
+        <p><strong>Senin - Jumat:</strong> 15:00 - 21:00</p>
+        <p><strong>Sabtu:</strong> 09:00 - 17:00</p>
+        <p><strong>Minggu:</strong> Tutup</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Enspire Learning.com © 2025 | Semua hak dilindungi.</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
