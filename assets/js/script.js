@@ -113,7 +113,7 @@ if (contactForm) {
 
     const message = `Halo, saya ${nama}\n\nEmail: ${email}\nNo. WA: ${whatsapp}\n\nPesan:\n${pesan}`;
     const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = '6281296077097';
+    const whatsappNumber = '6287789475324';
 
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
 
