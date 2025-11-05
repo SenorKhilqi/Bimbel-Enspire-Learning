@@ -96,11 +96,50 @@
 
   <!-- Owner Section -->
   <section class="section">
+    <style>
+      .leadership-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        max-width: 900px;
+        margin: 2rem auto;
+      }
+      
+      @media (max-width: 768px) {
+        .leadership-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+        
+        .leadership-grid .card {
+          padding: 1.5rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .leadership-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        
+        .leadership-grid .card {
+          padding: 1.25rem;
+        }
+        
+        .leadership-grid .card h3 {
+          font-size: 1.1rem;
+        }
+        
+        .leadership-grid .card p {
+          font-size: 0.85rem;
+        }
+      }
+    </style>
     <div class="section-title">
       <h2>Kepemimpinan Kami</h2>
       <p>Tim profesional yang berdedikasi untuk kesuksesan siswa</p>
     </div>
-    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); max-width: 900px; margin: 2rem auto;">
+    <div class="leadership-grid">
       <div class="card">
         <h3>Pendiri</h3>
         <p style="margin: 1rem 0;"><strong>Endang Abdul Kodir, M.B.A</strong></p>
